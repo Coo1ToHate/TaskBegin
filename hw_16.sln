@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hw_16", "hw_16\hw_16.csproj", "{18EA2B4A-B630-447B-A007-EE7B7EE94956}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BigMatrixMult", "BigMatrixMult\BigMatrixMult.csproj", "{7366201D-3573-4636-B869-262BAD3112E1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{18EA2B4A-B630-447B-A007-EE7B7EE94956}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18EA2B4A-B630-447B-A007-EE7B7EE94956}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18EA2B4A-B630-447B-A007-EE7B7EE94956}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18EA2B4A-B630-447B-A007-EE7B7EE94956}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7366201D-3573-4636-B869-262BAD3112E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7366201D-3573-4636-B869-262BAD3112E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7366201D-3573-4636-B869-262BAD3112E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7366201D-3573-4636-B869-262BAD3112E1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6AE2D55B-518C-4032-B4AF-AA6C6275E4DC}
+	EndGlobalSection
+EndGlobal
