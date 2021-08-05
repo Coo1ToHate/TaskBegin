@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BigMatrixMult
@@ -11,13 +12,13 @@ namespace BigMatrixMult
 
         static void Main()
         {
-            int n1 = 1000;
-            int m1, n2;
-            m1 = n2 = 2000;
-            int m2 = 3000;
+            int aRows = 1000;
+            int aCols, bRows;
+            aCols = bRows = 2000;
+            int bCols = 30000;
             //Создаем две матрицы
-            int[,] firstMatrix = CreateMatrix(n1, m1);
-            int[,] secondMatrix = CreateMatrix(n2, m2);
+            int[,] firstMatrix = CreateMatrix(aRows, aCols);
+            int[,] secondMatrix = CreateMatrix(bRows, bCols);
 
             //Очищаем консоль
             ClearConsole();
@@ -27,7 +28,6 @@ namespace BigMatrixMult
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
 
-
             //int[,] multiMatrix = MatrixMultiplication(firstMatrix, secondMatrix);
 
             stopWatch.Stop();
@@ -36,7 +36,7 @@ namespace BigMatrixMult
 
             Console.WriteLine($"\tЗатраченно времени : {elapsedTime}");
 
-            Console.WriteLine();
+            //Console.WriteLine();
             //PrintMatrix(multiMatrix);
             Console.WriteLine();
 
@@ -44,7 +44,7 @@ namespace BigMatrixMult
             Console.WriteLine("Результат c многопоточностью:");
             stopWatch.Start();
 
-            int[,] multiMatrix2 = MatrixMultiplicationTask(8000, firstMatrix, secondMatrix);
+            int[,] multiMatrix2 = MatrixMultiplicationTask(Environment.ProcessorCount * 2000, firstMatrix, secondMatrix);
 
             stopWatch.Stop();
             ts = stopWatch.Elapsed;
@@ -52,7 +52,7 @@ namespace BigMatrixMult
 
             Console.WriteLine($"\tЗатраченно времени : {elapsedTime}");
 
-            Console.WriteLine();
+            //Console.WriteLine();
             //PrintMatrix(multiMatrix2);
 
             Console.ReadKey();
@@ -100,7 +100,7 @@ namespace BigMatrixMult
 
             int min = 0;
             int max = aRows;
-            
+
             while (max / countTasks == 0)
             {
                 countTasks--;
@@ -119,21 +119,26 @@ namespace BigMatrixMult
                 int max2 = max1;
 
                 tasks.Add(new Task(() => Mult(min2, max2, a, b, result)));
+                tasks.Last().Start();
                 min1 = max2;
 
             } while (min1 < max);
 
 
-            foreach (var t in tasks)
-            {
-                t.Start();
-            }
 
             Task.WaitAll(tasks.ToArray());
 
             return result;
         }
 
+        /// <summary>
+        /// Метод частичного вычисления умножения матриц
+        /// </summary>
+        /// <param name="min"> От индекса</param>
+        /// <param name="max"> До индекса</param>
+        /// <param name="a"> Матрица А</param>
+        /// <param name="b"> Матрица В</param>
+        /// <param name="result"></param>
         private static void Mult(int min, int max, int[,] a, int[,] b, int[,] result)
         {
             int aRows = a.GetUpperBound(0) + 1;
